@@ -8,22 +8,18 @@ import java.util.Collection;
 
 public class Tracker {
     private Map<String, Set<Game>> tracker;
-    private Set<String> titles;
 
     Tracker() {
         tracker = new HashMap<String, Set<Game>>();
-        titles = new HashSet<String>();
     }
 
     Tracker(Collection<Game> games) {
         tracker = new HashMap<String, Set<Game>>();
-        titles = new HashSet<String>();
         addGames(games);
     }
 
     Tracker(Game game) {
         tracker = new HashMap<String, Set<Game>>();
-        titles = new HashSet<String>();
         addGame(game);
     }
 
@@ -35,7 +31,6 @@ public class Tracker {
             s.add(game);
             tracker.put(game.getGameTitle(), s);
         }
-        titles.add(game.getGameTitle());
     }
 
     public void addGames(Collection<Game> games) {
@@ -49,7 +44,7 @@ public class Tracker {
     }
 
     public Collection<String> getAllGames() {
-        return new HashSet<String>(titles);
+        return new HashSet<String>(tracker.keySet());
     }
 
     public String toString() {
