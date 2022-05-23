@@ -11,10 +11,12 @@ public class Person {
     }
 
     public String getAddress() {
+        /* getter for string address */
         return address;
     }
 
     public String getName() {
+        /* getter for string name */
         return name;
     }
 
