@@ -2,7 +2,7 @@ package evacTracker;
 
 import java.util.Date;
 
-public class Application {
+public class Application implements Comparable<Application> {
     private Date applicationDate;
     private Person person;
 
@@ -27,6 +27,10 @@ public class Application {
         person = p;
     }
 
+    public String getPersonName() {
+        return person.getName();
+    }
+
     @Override
     public String toString() {
         String rs = "";
@@ -34,6 +38,7 @@ public class Application {
         return rs;
     }
 
+    @Override
     public int compareTo(Application app) {
         return this.applicationDate.compareTo(app.applicationDate);
     }

@@ -4,6 +4,10 @@ import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Tracker {
     private PriorityQueue<Application> tracker;
@@ -14,15 +18,40 @@ public class Tracker {
         selected = new HashSet<Application>();
     }
 
+    Tracker(Set<Application> s) {
+        tracker = new PriorityQueue<Application>(s);
+        selected = new HashSet<Application>();
+
+    }
+
     public void addApplication(Application app) {
         tracker.add(app);
+    }
+
+    public Set<Application> findSelectedByName(String name) {
+        Set<Application> s = new HashSet<Application>();
+        for (Application a : selected) {
+            if (a.getPersonName() == name) {
+                s.add(a);
+            }
+        }
+        return s;
     }
 
     public Application getNext() {
         return tracker.poll();
     }
 
-    public void selectApplication(Application app) {
+    Comparator<Application> compareByName = (Application a1, Application a2) -> a1.getPersonName()
+            .compareTo(a2.getPersonName());
+
+    public Collection<Application> getAllSelected() {
+        List<Application> sortedList = new ArrayList<Application>(selected);
+        Collections.sort(sortedList, compareByName);
+        return sortedList;
+    }
+
+    public void acceptApplication(Application app) {
         selected.add(app);
     }
 
@@ -38,7 +67,7 @@ public class Tracker {
                 rs += a;
             }
         } else {
-            for (Application c : selected) {
+            for (Application c : getAllSelected()) {
                 rs += c;
             }
         }
@@ -50,7 +79,7 @@ public class Tracker {
     }
 
     public Collection<Application> getSelected() {
-        return selected;
+        return new HashSet<Application>(selected);
     }
 
 }
