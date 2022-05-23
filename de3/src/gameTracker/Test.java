@@ -16,6 +16,7 @@ public class Test {
     }
 
     public static Set<Game> buildTestGames(int count) {
+        /* builds some randomly generated games under three titles for testing */
         Random rand = new Random();
         int max = 20;
         Set<Game> returnSet = new HashSet<Game>();

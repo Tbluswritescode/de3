@@ -14,16 +14,19 @@ public class Tracker {
     }
 
     Tracker(Collection<Game> games) {
+        /* allows for adding a series of games at instantitation, mostly for testing */
         tracker = new HashMap<String, Set<Game>>();
         addGames(games);
     }
 
     Tracker(Game game) {
+        /* allows for adding single game at instantiation */
         tracker = new HashMap<String, Set<Game>>();
         addGame(game);
     }
 
     public void addGame(Game game) {
+        /* adds a single game to the tracker */
         if (tracker.containsKey(game.getGameTitle())) {
             tracker.get(game.getGameTitle()).add(game);
         } else {
@@ -34,17 +37,25 @@ public class Tracker {
     }
 
     public void addGames(Collection<Game> games) {
+        /* adds a collection of games to the tracker, mostly for testing */
         for (Game g : games) {
             addGame(g);
         }
     }
 
     public String getByGame(String title) {
+        /* gets a string representing all games played for a given title */
         return tracker.get(title).toString();
     }
 
     public Collection<String> getAllGames() {
+        /* returns all of the titles of games played */
         return new HashSet<String>(tracker.keySet());
+    }
+
+    public Map<String, Set<Game>> getTracker() {
+        /* returns a copy of the entire tracker */
+        return new HashMap<String, Set<Game>>(tracker);
     }
 
     public String toString() {
@@ -58,6 +69,10 @@ public class Tracker {
     }
 
     public String toStringSummaryByGame() {
+        /*
+         * finds statistical averages and returns a string containing the average
+         * stats on each game title you have played
+         */
         String rs = "";
         for (Map.Entry<String, Set<Game>> e : tracker.entrySet()) {
             int kills = 0;

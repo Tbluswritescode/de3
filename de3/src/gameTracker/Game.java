@@ -14,6 +14,7 @@ public class Game {
     }
 
     public String getGame() {
+        /* returns the string format of this game */
         return this.toString();
     }
 
@@ -22,18 +23,22 @@ public class Game {
     }
 
     public int getKills() {
+        /* getter for int kills */
         return kills;
     }
 
     public int getDeaths() {
+        /* getter for int deaths */
         return deaths;
     }
 
     public int getAssists() {
+        /* getter for int assists */
         return assists;
     }
 
     public String getGameTitle() {
+        /* getter for String game title */
         return title;
     }
 }
