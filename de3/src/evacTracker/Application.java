@@ -27,9 +27,14 @@ public class Application {
         person = p;
     }
 
+    @Override
     public String toString() {
         String rs = "";
         rs += "Applied on " + applicationDate + ": " + person;
         return rs;
+    }
+
+    public int compareTo(Application app) {
+        return this.applicationDate.compareTo(app.applicationDate);
     }
 }

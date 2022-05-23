@@ -18,6 +18,7 @@ public class Person {
         return name;
     }
 
+    @Override
     public String toString() {
         String rs = "";
         rs += name + ": " + address + "\n";
